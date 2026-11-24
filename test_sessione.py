@@ -29,3 +29,25 @@ class TestSessione(unittest.TestCase):
             "LAB001", date(2026, 11, 18), "08:00", "10:00", "Giovanni", 12
         )
         self.assertEqual(sessione.durata_minuti(), 120)
+#parte4
+    def test_durata_in_minuti(self):
+            sessione = Sessione(
+                "LAB001", date(2026, 11, 18), "08:00", "10:00", "Giovanni", 12
+            )
+            self.assertEqual(sessione.durata_minuti(), 120)
+    def test_si_sovrappone(self):
+            sessione_a = Sessione(
+                "LAB001", date(2026, 11, 18), "08:00", "10:00", "Giovanni", 12
+            )
+            sessione_b = Sessione(
+                "LAB002", date(2026, 11, 18), "08:00", "10:00", "Giovanni", 12
+            )
+            self.assertFalse(sessione_a.si_sovrappone(sessione_b))
+            sessione_c = Sessione(
+                "LAB003", date(2026, 11, 17), "09:00", "12:30", "Giovanni", 12
+            )
+            self.assertFalse(sessione_a.si_sovrappone(sessione_c))
+            sessione_d = Sessione(
+                "LAB001", date(2026, 11, 18), "09:00", "11:30", "Giovanni", 12
+            )
+            self.assertTrue(sessione_a.si_sovrappone(sessione_d))
