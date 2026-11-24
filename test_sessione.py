@@ -23,3 +23,9 @@ class TestSessione(unittest.TestCase):
     def test_data_non_ammessa(self):
             with self.assertRaises(TypeError):
                 Sessione("LAB001", "2026, 11, 18", "08:00", "10:00", "Giovanni", 12)
+#parte3
+    def test_durata_in_minuti(self):
+        sessione = Sessione(
+            "LAB001", date(2026, 11, 18), "08:00", "10:00", "Giovanni", 12
+        )
+        self.assertEqual(sessione.durata_minuti(), 120)
